@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import ContactManager from '../views/ContactManager.vue';
+import AddContact from '../views/AddContact.vue';
+import ViewContact from '../views/ViewContact.vue';
+import EditContact from '../views/EditContact.vue';
+import PageNotFound from '../views/PageNotFound.vue';
+import DeleteContact from '../views/DeleteContact.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
+    redirect: '/contacts',
     component: HomeView,
   },
   {
@@ -14,12 +20,29 @@ const routes = [
     component: ContactManager,
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    path: '/contacts/add',
+    name: 'AddContact',
+    component: AddContact,
+  },
+  {
+    path: '/contacts/view/:contactId',
+    name: 'ViewContact',
+    component: ViewContact,
+  },
+  {
+    path: '/contacts/edit/:contactId',
+    name: 'EditContact',
+    component: EditContact,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'PageNotFound',
+    component: PageNotFound,
+  },
+  {
+    path: '/contacts/delete/:contactId',
+    name: 'DeleteContact',
+    component: DeleteContact,
   },
 ];
 
